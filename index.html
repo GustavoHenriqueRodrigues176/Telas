@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+
+  <style>
+    .tela { display: none; }
+    .ativa { display: block; }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🔐 LOGIN -->
+  <div id="login" class="tela ativa">
+    <h2>Login</h2>
+    <input type="text" id="usuario" placeholder="Usuário"><br>
+    <input type="password" id="senha" placeholder="Senha"><br>
+    <button onclick="login()">Entrar</button>
+    <p id="erro" style="color:red;"></p>
+  </div>
+
+  <!-- 🖥️ SISTEMA -->
+  <div id="sistema" class="tela">
+
+    <!-- 🔷 MENU -->
+    <div class="sidebar">
+      <h2>⚡</h2>
+      <button onclick="trocarPagina('home')">🏠</button>
+      <button onclick="trocarPagina('usuarios')">👤</button>
+      <button id="btnAdmin" onclick="trocarPagina('admin')">⚙️</button>
+    </div>
+
+    <!-- 🧱 ÁREA PRINCIPAL -->
+    <div class="area-principal">
+
+      <!-- 🟩 LADO ESQUERDO -->
+      <div class="lado-esquerdo">
+
+        <!-- 🔝 TOPO -->
+        <div class="topo">
+          <button onclick="logout()">Sair</button>
+        </div>
+
+        <!-- HOME -->
+        <div id="home" class="pagina">
+          <h1>Bem-vindo</h1>
+          <h2>Sistema de Telas</h2>
+          <p>
+            Controle e acompanhe o acesso dos usuários com segurança e organização.
+            Gerencie permissões, visualize atividades e navegue entre as funcionalidades
+            de forma prática e intuitiva.
+          </p>
+        </div>
+
+        <!-- USUÁRIOS -->
+        <div id="usuarios" class="pagina">
+          <h1>Usuários</h1>
+          <p>Gerenciamento completo dos usuários do sistema.</p>
+        </div>
+
+        <!-- ADMIN -->
+        <div id="admin" class="pagina">
+          <h1>Admin</h1>
+          <p>Área administrativa com controle avançado.</p>
+        </div>
+
+      </div>
+
+      <!-- ⬜ LADO DIREITO -->
+      <div class="lado-direito"></div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
