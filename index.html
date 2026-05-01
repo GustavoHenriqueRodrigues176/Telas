@@ -60,6 +60,18 @@
         <div id="usuarios" class="pagina">
           <h1>Usuários</h1>
           <p>Gerenciamento completo dos usuários do sistema.</p>
+          <div class="tabela-wrapper">
+            <table class="tabela-usuarios">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Usuário</th>
+                  <th>Tipo</th>
+                </tr>
+              </thead>
+              <tbody id="corpoTabela"></tbody>
+            </table>
+          </div>
         </div>
 
         <!-- ADMIN -->
@@ -71,7 +83,115 @@
       </div>
 
       <!-- ⬜ LADO DIREITO -->
-      <div class="lado-direito"></div>
+      <div class="lado-direito">
+
+        <!-- DASHBOARD (home) -->
+        <div id="dashboardPanel" style="display:none; height:100%; padding:36px 40px; box-sizing:border-box; overflow-y:auto;">
+
+          <div class="dash-title">📊 Visão Geral do Sistema</div>
+
+          <div class="dash-cards">
+            <div class="dash-card">
+              <div class="dash-card-icon">👥</div>
+              <div class="dash-card-info">
+                <span class="dash-card-num" id="dashTotal">0</span>
+                <span class="dash-card-label">Total de Usuários</span>
+              </div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-icon">🧩</div>
+              <div class="dash-card-info">
+                <span class="dash-card-num" id="dashGerenciadores">0</span>
+                <span class="dash-card-label">Gerenciadores</span>
+              </div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-icon">🧑‍💼</div>
+              <div class="dash-card-info">
+                <span class="dash-card-num" id="dashSupervisores">0</span>
+                <span class="dash-card-label">Supervisores</span>
+              </div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-icon">👤</div>
+              <div class="dash-card-info">
+                <span class="dash-card-num" id="dashUsuarios">0</span>
+                <span class="dash-card-label">Usuários Comuns</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-bottom">
+
+            <!-- Perfil do usuário logado -->
+            <div class="dash-perfil">
+              <div class="dash-secao-titulo">🪪 Seu Perfil</div>
+              <div class="dash-perfil-corpo">
+                <div class="dash-perfil-avatar" id="dashAvatar"></div>
+                <div class="dash-perfil-info">
+                  <div class="dash-perfil-nome" id="dashNome"></div>
+                  <div class="dash-perfil-badge" id="dashTipoBadge"></div>
+                </div>
+              </div>
+              <div class="dash-nivel-barra">
+                <div class="dash-nivel-label" id="dashNivelTexto"></div>
+                <div class="dash-nivel-track">
+                  <div class="dash-nivel-fill" id="dashNivelFill"></div>
+                </div>
+              </div>
+              <div class="dash-perms" id="dashPerms"></div>
+            </div>
+
+            <!-- Alertas -->
+            <div class="dash-alertas">
+              <div class="dash-secao-titulo">🔔 Alertas</div>
+              <div id="dashAlertasList" class="dash-alertas-lista"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PAINEL PERMISSÕES (usuários) -->
+        <div id="painelPermissoes" style="display:none; height:100%; padding:40px; box-sizing:border-box; overflow-y:auto;">
+          <div id="painelVazio" class="painel-placeholder" style="display:flex; height:100%;"></div>
+          <div id="painelDetalhes" style="display:none;">
+            <div class="painel-header">
+              <div class="painel-avatar" id="painelAvatar"></div>
+              <div>
+                <h3 id="painelNome"></h3>
+                <span class="badge-painel" id="painelTipo"></span>
+              </div>
+            </div>
+            <div class="painel-secao">
+              <p class="painel-secao-titulo">🔑 Nível de Acesso</p>
+              <div class="opcoes-tipo">
+                <label class="opcao-tipo"><input type="radio" name="tipoAcesso" value="Usuario"> Usuário</label>
+                <label class="opcao-tipo"><input type="radio" name="tipoAcesso" value="Supervisão"> Supervisão</label>
+                <label class="opcao-tipo"><input type="radio" name="tipoAcesso" value="Gerenciador"> Gerenciador</label>
+                <label class="opcao-tipo"><input type="radio" name="tipoAcesso" value="Administrador"> Administrador</label>
+              </div>
+            </div>
+            <div class="painel-secao">
+              <p class="painel-secao-titulo">🛡️ Permissões</p>
+              <div class="opcoes-permissoes">
+                <label class="opcao-check"><input type="checkbox"> Ver Usuários</label>
+                <label class="opcao-check"><input type="checkbox"> Editar Usuários</label>
+                <label class="opcao-check"><input type="checkbox"> Acessar Admin</label>
+                <label class="opcao-check"><input type="checkbox"> Gerar Relatórios</label>
+                <label class="opcao-check"><input type="checkbox"> Alterar Configurações</label>
+              </div>
+            </div>
+            <div class="painel-acoes">
+              <button class="btn-salvar">💾 Salvar Alterações</button>
+              <button class="btn-cancelar" onclick="fecharPainel()">✕ Cancelar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAINEL ADMIN -->
+        <div id="adminPanel" style="display:none; height:100%; padding:40px; box-sizing:border-box;"></div>
+
+      </div>
 
     </div>
 
