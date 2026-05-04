@@ -5,67 +5,63 @@
   <title>Sistema</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
-  <style>
-    .tela { display: none; }
-    .ativa { display: block; }
-  </style>
 </head>
 
 <body>
 
-  <!-- 🔐 LOGIN -->
+  <!-- LOGIN -->
   <div id="login" class="tela ativa">
     <h2>Login</h2>
-    <input type="text" id="usuario" placeholder="Usuário"><br>
-    <input type="password" id="senha" placeholder="Senha"><br>
-    <button onclick="login()">Entrar</button>
-    <p id="erro" style="color:red;"></p>
+    <input type="text" id="inputUsuario" placeholder="Usuario">
+    <input type="password" id="inputSenha" placeholder="Senha">
+    <button id="btnLogin">Entrar</button>
+    <p id="erroLogin"></p>
   </div>
 
-  <!-- 🖥️ SISTEMA -->
+  <!-- SISTEMA -->
   <div id="sistema" class="tela">
 
-    <!-- 🔷 MENU -->
+    <!-- MENU LATERAL -->
     <div class="sidebar">
-      <h2>⚡</h2>
-      <button onclick="trocarPagina('home')">🏠</button>
-      <button onclick="trocarPagina('usuarios')">👤</button>
-      <button id="btnAdmin" onclick="trocarPagina('admin')">⚙️</button>
+      <h2>S</h2>
+      <button id="btnHome">Home</button>
+      <button id="btnUsuarios">Usuarios</button>
+      <button id="btnAdmin">Admin</button>
     </div>
 
-    <!-- 🧱 ÁREA PRINCIPAL -->
+    <!-- AREA PRINCIPAL -->
     <div class="area-principal">
 
-      <!-- 🟩 LADO ESQUERDO -->
+      <!-- LADO ESQUERDO -->
       <div class="lado-esquerdo">
 
-        <!-- 🔝 TOPO -->
+        <!-- TOPO -->
         <div class="topo">
-          <span id="nomeUsuario" style="margin-right: auto; font-weight: bold;"></span>
-          <button onclick="logout()">Sair</button>
+          <span id="nomeUsuario"></span>
+          <button id="btnSair">Sair</button>
         </div>
 
         <!-- HOME -->
-        <div id="home" class="pagina">
+        <div id="paginaHome" class="pagina ativa">
           <h1>Bem-vindo</h1>
           <h2>Sistema de Telas</h2>
           <p>
-            Controle e acompanhe o acesso dos usuários com segurança e organização.
-            Gerencie permissões, visualize atividades e navegue entre as funcionalidades
-            de forma prática e intuitiva.
+            Controle e acompanhe o acesso dos usuarios com seguranca e organizacao.
+            Gerencie permissoes, visualize atividades e navegue entre as funcionalidades
+            de forma pratica e intuitiva.
           </p>
         </div>
 
-        <!-- USUÁRIOS -->
-        <div id="usuarios" class="pagina">
-          <h1>Usuários</h1>
-          <p>Gerenciamento completo dos usuários do sistema.</p>
+        <!-- USUARIOS -->
+        <div id="paginaUsuarios" class="pagina">
+          <h1>Usuarios</h1>
+          <p>Gerenciamento completo dos usuarios do sistema.</p>
           <div class="tabela-wrapper">
             <table class="tabela-usuarios">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Usuário</th>
+                  <th>Usuario</th>
                   <th>Tipo</th>
                 </tr>
               </thead>
@@ -75,57 +71,50 @@
         </div>
 
         <!-- ADMIN -->
-        <div id="admin" class="pagina">
+        <div id="paginaAdmin" class="pagina">
           <h1>Admin</h1>
-          <p>Área administrativa com controle avançado.</p>
+          <p>Area administrativa com controle avancado.</p>
         </div>
 
       </div>
 
-      <!-- ⬜ LADO DIREITO -->
+      <!-- LADO DIREITO -->
       <div class="lado-direito">
 
-        <!-- DASHBOARD (home) -->
-        <div id="dashboardPanel" style="display:none; height:100%; padding:36px 40px; box-sizing:border-box; overflow-y:auto;">
-
-          <div class="dash-title">📊 Visão Geral do Sistema</div>
+        <!-- DASHBOARD -->
+        <div id="dashboardPanel" class="painel-direito">
+          <div class="dash-title">Visao Geral do Sistema</div>
 
           <div class="dash-cards">
             <div class="dash-card">
-              <div class="dash-card-icon">👥</div>
               <div class="dash-card-info">
                 <span class="dash-card-num" id="dashTotal">0</span>
-                <span class="dash-card-label">Total de Usuários</span>
+                <span class="dash-card-label">Total de Usuarios</span>
               </div>
             </div>
             <div class="dash-card">
-              <div class="dash-card-icon">🧩</div>
               <div class="dash-card-info">
                 <span class="dash-card-num" id="dashGerenciadores">0</span>
                 <span class="dash-card-label">Gerenciadores</span>
               </div>
             </div>
             <div class="dash-card">
-              <div class="dash-card-icon">🧑‍💼</div>
               <div class="dash-card-info">
                 <span class="dash-card-num" id="dashSupervisores">0</span>
                 <span class="dash-card-label">Supervisores</span>
               </div>
             </div>
             <div class="dash-card">
-              <div class="dash-card-icon">👤</div>
               <div class="dash-card-info">
                 <span class="dash-card-num" id="dashUsuarios">0</span>
-                <span class="dash-card-label">Usuários Comuns</span>
+                <span class="dash-card-label">Usuarios Comuns</span>
               </div>
             </div>
           </div>
 
           <div class="dash-bottom">
-
-            <!-- Perfil do usuário logado -->
             <div class="dash-perfil">
-              <div class="dash-secao-titulo">🪪 Seu Perfil</div>
+              <div class="dash-secao-titulo">Seu Perfil</div>
               <div class="dash-perfil-corpo">
                 <div class="dash-perfil-avatar" id="dashAvatar"></div>
                 <div class="dash-perfil-info">
@@ -142,18 +131,16 @@
               <div class="dash-perms" id="dashPerms"></div>
             </div>
 
-            <!-- Alertas -->
             <div class="dash-alertas">
-              <div class="dash-secao-titulo">🔔 Alertas</div>
+              <div class="dash-secao-titulo">Alertas</div>
               <div id="dashAlertasList" class="dash-alertas-lista"></div>
             </div>
-
           </div>
         </div>
 
-        <!-- PAINEL PERMISSÕES (usuários) -->
-        <div id="painelPermissoes" style="display:none; height:100%; padding:40px; box-sizing:border-box; overflow-y:auto;">
-          <div id="painelVazio" class="painel-placeholder" style="display:flex; height:100%;"></div>
+        <!-- PAINEL PERMISSOES -->
+        <div id="painelPermissoes" class="painel-direito" style="display:none;">
+          <div id="painelVazio" class="painel-placeholder"></div>
           <div id="painelDetalhes" style="display:none;">
             <div class="painel-header">
               <div class="painel-avatar" id="painelAvatar"></div>
@@ -163,38 +150,30 @@
               </div>
             </div>
             <div class="painel-secao">
-              <p class="painel-secao-titulo">🔑 Nível de Acesso</p>
+              <p class="painel-secao-titulo">Nivel de Acesso</p>
               <div class="opcoes-tipo">
-                <label class="opcao-tipo"><input type="radio" name="tipoAcesso" value="Usuario"> Usuário</label>
-                <label class="opcao-tipo"><input type="radio" name="tipoAcesso" value="Supervisão"> Supervisão</label>
+                <label class="opcao-tipo"><input type="radio" name="tipoAcesso" value="Usuario"> Usuario</label>
+                <label class="opcao-tipo"><input type="radio" name="tipoAcesso" value="Supervisao"> Supervisao</label>
                 <label class="opcao-tipo"><input type="radio" name="tipoAcesso" value="Gerenciador"> Gerenciador</label>
                 <label class="opcao-tipo"><input type="radio" name="tipoAcesso" value="Administrador"> Administrador</label>
               </div>
             </div>
             <div class="painel-secao">
-              <p class="painel-secao-titulo">🛡️ Permissões</p>
-              <div class="opcoes-permissoes">
-                <label class="opcao-check"><input type="checkbox"> Ver Usuários</label>
-                <label class="opcao-check"><input type="checkbox"> Editar Usuários</label>
-                <label class="opcao-check"><input type="checkbox"> Acessar Admin</label>
-                <label class="opcao-check"><input type="checkbox"> Gerar Relatórios</label>
-                <label class="opcao-check"><input type="checkbox"> Alterar Configurações</label>
-              </div>
+              <p class="painel-secao-titulo">Permissoes</p>
+              <div class="opcoes-permissoes" id="listaPermissoes"></div>
             </div>
             <div class="painel-acoes">
-              <button class="btn-salvar">💾 Salvar Alterações</button>
-              <button class="btn-cancelar" onclick="fecharPainel()">✕ Cancelar</button>
+              <button class="btn-salvar" id="btnSalvar">Salvar Alteracoes</button>
+              <button class="btn-cancelar" id="btnCancelar">Cancelar</button>
             </div>
           </div>
         </div>
 
         <!-- PAINEL ADMIN -->
-        <div id="adminPanel" style="display:none; height:100%; padding:40px; box-sizing:border-box;"></div>
+        <div id="adminPanel" class="painel-direito" style="display:none;"></div>
 
       </div>
-
     </div>
-
   </div>
 
 </body>

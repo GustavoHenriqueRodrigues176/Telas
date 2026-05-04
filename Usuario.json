@@ -1,27 +1,7 @@
 [
-  {
-    "user": "Erick",
-    "senha": 2085,
-    "tipo": "Usuario1"
-  },
-  {
-    "user": "Gustavo",
-    "senha": 3740,
-    "tipo": "Usuario2"
-  },
-  {
-    "user": "Supervisor",
-    "senha": 1234,
-    "tipo": "Supervisão"
-  },
-  {
-    "user": "Gerente",
-    "senha": 2101,
-    "tipo": "Gerenciador"
-  },
-  {
-    "user": "Admin",
-    "senha": 1010,
-    "tipo": "Administrador"
-  }
+  { "user": "Erick",      "senha": "2085", "tipo": "Usuario"       },
+  { "user": "Gustavo",    "senha": "3740", "tipo": "Usuario"       },
+  { "user": "Supervisor", "senha": "1234", "tipo": "Supervisao"    },
+  { "user": "Gerente",    "senha": "2101", "tipo": "Gerenciador"   },
+  { "user": "Admin",      "senha": "1010", "tipo": "Administrador" }
 ]
