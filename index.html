@@ -27,6 +27,7 @@
       <button id="btnHome">Home</button>
       <button id="btnUsuarios">Usuarios</button>
       <button id="btnAdmin">Admin</button>
+      <button onclick="abrirPagina('contato')">Contato</button>
     </div>
 
     <!-- AREA PRINCIPAL -->
@@ -56,6 +57,17 @@
         <div id="paginaUsuarios" class="pagina">
           <h1>Usuarios</h1>
           <p>Gerenciamento completo dos usuarios do sistema.</p>
+
+          <div id="paginaFiltragemUsuarios">
+            <select id="filtroTipo">
+             <option value="Todos">Todos</option>
+             <option value="Administrador">Administrador</option>
+             <option value="Gerenciador">Gerenciador</option>
+             <option value="Supervisao">Supervisao</option>
+             <option value="Usuario">Usuario</option>
+            </select>
+          </div>
+
           <div class="tabela-wrapper">
             <table class="tabela-usuarios">
               <thead>
@@ -175,6 +187,21 @@
       </div>
     </div>
   </div>
+  
+  <!-- PAGINA DE CONTATO -->
+  <div id="paginaContato" class="pagina">
+
+  <h1>Contato</h1>
+
+  <div class="cardContato">
+    <h3>Suporte</h3>
+
+    <p>Email: suporte@sistema.com</p>
+    <p>Telefone: (55) 99999-9999</p>
+    <p>GitHub: github.com/projeto</p>
+  </div>
+
+</div>
 
 </body>
 </html>
