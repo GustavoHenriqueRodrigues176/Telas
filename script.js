@@ -154,29 +154,47 @@ window.onload = function () {
 // =============================================================
 
 function realizarLogin() {
-  const inputUser  = document.getElementById("inputUsuario").value.trim();
-  const inputSenha = document.getElementById("inputSenha").value.trim();
-  const erroEl     = document.getElementById("erroLogin");
+  const erroEl = document.getElementById("erroLogin");
 
-  const encontrados = listaUsuarios.filter(function (u) {
-    return u.user === inputUser && u.senha === inputSenha;
-  });
+  try {
+    const inputUser  = document.getElementById("inputUsuario").value.trim();
+    const inputSenha = document.getElementById("inputSenha").value.trim();
 
-  if (encontrados.length === 0) {
-    erroEl.innerText   = "Usuario ou senha invalidos.";
-    erroEl.style.color = "#ff6b6b";
-    return;
+    // Validação dos campos
+    if (inputUser === "" || inputSenha === "") {
+      throw new Error("Preencha usuario e senha.");
+    }
+
+    const encontrados = listaUsuarios.filter(function (u) {
+      return u.user === inputUser && u.senha === inputSenha;
+    });
+
+    // Usuario nao encontrado
+    if (encontrados.length === 0) {
+      throw new Error("Usuario ou senha invalidos.");
+    }
+
+    erroEl.innerText = "";
+    usuarioLogado = encontrados[0];
+
+    localStorage.setItem(
+      "usuario_logado",
+      JSON.stringify(usuarioLogado.toJSON())
+    );
+
+    document.getElementById("login").style.display = "none";
+    document.getElementById("sistema").style.display = "flex";
+
+    iniciarSistema();
+
+  } catch (erro) {
+
+    erroEl.innerText = erro.message;
+    erroEl.style.color = "#ff5656";
+
+    console.error("Erro no login:", erro);
+
   }
-
-  erroEl.innerText = "";
-  usuarioLogado    = encontrados[0];
-
-  localStorage.setItem("usuario_logado", JSON.stringify(usuarioLogado.toJSON()));
-
-  document.getElementById("login").style.display   = "none";
-  document.getElementById("sistema").style.display = "flex";
-
-  iniciarSistema();
 }
 
 // =============================================================
@@ -219,7 +237,9 @@ function trocarPagina(qual) {
   } else if (qual === "admin") {
     document.getElementById("paginaAdmin").classList.add("ativa");
     exibirPainelDireito("adminPanel");
-  }
+  } else if (qual === "contato") {
+    document.getElementById("paginaContato").classList.add("ativa");
+}
 }
 
 // =============================================================
@@ -274,9 +294,21 @@ function renderizarTabela() {
 
   const nivelLogado = nivelDo(usuarioLogado.tipo);
 
+  const filtro = document.getElementById("filtroTipo").value;
+
   const visiveis = listaUsuarios.filter(function (u) {
-    if (usuarioLogado.tipo === "Administrador") return true;
-    return nivelDo(u.tipo) < nivelLogado;
+
+  // FILTRO DE HIERARQUIA
+  const permitido =
+    usuarioLogado.tipo === "Administrador" ||
+    nivelDo(u.tipo) < nivelLogado;
+
+  // FILTRO DO SELECT
+  const filtroTipo =
+    filtro === "Todos" ||
+    u.tipo === filtro;
+
+  return permitido && filtroTipo;
   });
 
   for (let i = 0; i < visiveis.length; i++) {
@@ -304,6 +336,9 @@ function renderizarTabela() {
 
   fecharPainel();
 }
+
+document.getElementById("filtroTipo")
+  .addEventListener("change", renderizarTabela);
 
 // =============================================================
 // PAINEL — Aula 07 (arrays) + Aula 08 (setter) + Aula 09 (persist)
