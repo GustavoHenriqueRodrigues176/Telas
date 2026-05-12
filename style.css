@@ -410,6 +410,8 @@ html, body {
 
 .btn-cancelar:hover { background: #eee; }
 
+
+
 /* ===================== DASHBOARD ===================== */
 
 .dash-title {
@@ -606,4 +608,31 @@ html, body {
   height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+/* ===================== FILTRO USUARIOS ===================== */
+
+#paginaFiltragemUsuarios{
+  margin: 14px 0 18px 0;
+}
+
+#filtroTipo{
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #0f9b8e;
+  background: #f8fffe;
+  color: #1a1a2e;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s;
+}
+
+#filtroTipo:hover{
+  border-color: #00ffcc;
+}
+
+#filtroTipo:focus{
+  box-shadow: 0 0 0 3px rgba(0,255,204,0.15);
 }
