@@ -85,6 +85,16 @@
         <div id="paginaAdmin" class="pagina">
           <h1>Admin</h1>
           <p>Area administrativa com controle avancado.</p>
+          <div class="admin-btns-esquerda">
+            <button class="admin-btn-esq" id="btnVerLogs" onclick="abrirSecaoAdmin('logs')">
+              <span class="admin-btn-esq-icone">📋</span>
+              <span>Logs do Sistema</span>
+            </button>
+            <button class="admin-btn-esq" id="btnBloquear" onclick="abrirSecaoAdmin('bloquear')">
+              <span class="admin-btn-esq-icone">🔒</span>
+              <span>Bloquear Usuarios</span>
+            </button>
+          </div>
         </div>
 
       </div>
@@ -222,6 +232,7 @@
   <script src="js/Dashboard.js"></script>
   <script src="js/TabelacomFiltros.js"></script>
   <script src="js/Painel.js"></script>
+  <script src="js/Admin.js"></script>
   <script src="js/Logout.js"></script>
 
 </body>

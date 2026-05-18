@@ -19,7 +19,8 @@ function trocarPagina(qual) {
   } else if (qual === "admin") {
     document.getElementById("paginaAdmin").classList.add("ativa");
     exibirPainelDireito("adminPanel");
+    renderizarPainelAdmin();
   } else if (qual === "contato") {
     document.getElementById("paginaContato").classList.add("ativa");
-}
+  }
 }

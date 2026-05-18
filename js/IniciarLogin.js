@@ -3,15 +3,13 @@
 // =============================================================
 
 window.onload = function () {
-  // Limpa sessao anterior sem apagar usuarios salvos
   localStorage.removeItem("usuario_logado");
 
-  // Garante que listaUsuarios começa com os dados iniciais,
-  // depois tenta sobrescrever com o que estiver no localStorage
+  // Carrega usuarios salvos (com bloqueios preservados)
+  // Se nao houver nada salvo, usa os dados iniciais
   listaUsuarios = DADOS_INICIAIS.map(function (d) {
     return new Usuario(d.user, d.senha, d.tipo);
   });
-
   carregarUsuariosDoLocal();
 
   document.getElementById("btnLogin").addEventListener("click", realizarLogin);
@@ -21,7 +19,7 @@ window.onload = function () {
 };
 
 // =============================================================
-// LOGIN — Aula 04 (condicionais) + Arrays PDF (filter)
+// LOGIN
 // =============================================================
 
 function realizarLogin() {
@@ -31,7 +29,6 @@ function realizarLogin() {
     const inputUser  = document.getElementById("inputUsuario").value.trim();
     const inputSenha = document.getElementById("inputSenha").value.trim();
 
-    // Validação dos campos
     if (inputUser === "" || inputSenha === "") {
       throw new Error("Preencha usuario e senha.");
     }
@@ -40,30 +37,32 @@ function realizarLogin() {
       return u.user === inputUser && u.senha === inputSenha;
     });
 
-    // Usuario nao encontrado
     if (encontrados.length === 0) {
       throw new Error("Usuario ou senha invalidos.");
     }
 
+    const usuario = encontrados[0];
+
+    // Verifica bloqueio
+    if (usuario.bloqueado) {
+      registrarLog("login", "Tentativa bloqueada: \"" + inputUser + "\"");
+      throw new Error("Acesso bloqueado. Contate o administrador.");
+    }
+
     erroEl.innerText = "";
-    usuarioLogado = encontrados[0];
+    usuarioLogado    = usuario;
 
-    localStorage.setItem(
-      "usuario_logado",
-      JSON.stringify(usuarioLogado.toJSON())
-    );
+    registrarLog("login", "Login: \"" + usuarioLogado.user + "\" (" + usuarioLogado.tipo + ")");
 
-    document.getElementById("login").style.display = "none";
+    localStorage.setItem("usuario_logado", JSON.stringify(usuarioLogado.toJSON()));
+
+    document.getElementById("login").style.display   = "none";
     document.getElementById("sistema").style.display = "flex";
 
     iniciarSistema();
 
   } catch (erro) {
-
-    erroEl.innerText = erro.message;
+    erroEl.innerText   = erro.message;
     erroEl.style.color = "#ff5656";
-
-    console.error("Erro no login:", erro);
-
   }
 }

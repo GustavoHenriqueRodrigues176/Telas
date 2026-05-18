@@ -636,3 +636,194 @@ html, body {
 #filtroTipo:focus{
   box-shadow: 0 0 0 3px rgba(0,255,204,0.15);
 }
+
+/* ===================== ADMIN BOTOES ESQUERDA ===================== */
+
+.admin-btns-esquerda {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.admin-btn-esq {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.admin-btn-esq:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #00ffcc;
+}
+
+.admin-btn-esq-ativo {
+  background: rgba(0, 255, 204, 0.2) !important;
+  border-color: #00ffcc !important;
+  color: #00ffcc !important;
+}
+
+.admin-btn-esq-icone {
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+/* ===================== ADMIN PAINEL DIREITO ===================== */
+
+.admin-painel-wrap {
+  padding: 36px 40px;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.admin-conteudo-vazio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.admin-secao {
+  background: #f8fffe;
+  border: 1px solid #e0f5f0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(15, 155, 142, 0.06);
+}
+
+.admin-secao-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: bold;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 16px;
+}
+
+/* Logs */
+.admin-logs-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.admin-logs-vazio {
+  font-size: 13px;
+  color: #aaa;
+  text-align: center;
+  padding: 24px 0;
+  font-style: italic;
+}
+
+.admin-log-linha {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.admin-log-icone { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+.admin-log-corpo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-log-desc  { color: #333; font-size: 13px; }
+.admin-log-hora  { color: #aaa; font-size: 11px; }
+
+.admin-btn-limpar {
+  padding: 4px 12px;
+  background: #fff0f0;
+  border: 1px solid #fca5a5;
+  color: #e55;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
+  transition: background 0.15s;
+}
+.admin-btn-limpar:hover { background: #ffe4e4; }
+
+/* Bloquear */
+.admin-users-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-user-linha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+
+.admin-user-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0f9b8e, #2c5364);
+  color: white;
+  font-size: 16px; font-weight: bold;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-user-info {
+  flex: 1;
+  display: flex; flex-direction: column; gap: 2px;
+}
+
+.admin-user-nome { font-size: 14px; font-weight: 700; color: #1a1a2e; }
+.admin-user-tipo { font-size: 11px; color: #888; }
+
+.admin-badge-ativo {
+  font-size: 11px; padding: 3px 10px; border-radius: 20px;
+  background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; font-weight: 600;
+}
+
+.admin-badge-bloqueado {
+  font-size: 11px; padding: 3px 10px; border-radius: 20px;
+  background: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; font-weight: 600;
+}
+
+.admin-btn-bloquear {
+  padding: 7px 14px;
+  background: #fee2e2; border: 1px solid #fca5a5; color: #dc2626;
+  border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold;
+  transition: background 0.15s; flex-shrink: 0;
+}
+.admin-btn-bloquear:hover { background: #fecaca; }
+
+.admin-btn-desbloquear {
+  padding: 7px 14px;
+  background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46;
+  border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold;
+  transition: background 0.15s; flex-shrink: 0;
+}
+.admin-btn-desbloquear:hover { background: #a7f3d0; }

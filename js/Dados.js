@@ -12,6 +12,19 @@ const DADOS_INICIAIS = [
 
 const HIERARQUIA = ["Usuario", "Supervisao", "Gerenciador", "Administrador"];
 
+// Todas as permissoes existentes no sistema
+const TODAS_PERMISSOES = [
+  "Ver proprio perfil",
+  "Ver usuarios comuns",
+  "Ver usuarios",
+  "Ver todos os usuarios",
+  "Editar usuarios",
+  "Acessar Admin",
+  "Gerar relatorios",
+  "Alterar configuracoes"
+];
+
+// Permissoes padrao concedidas ao criar/resetar cada tipo
 const PERMISSOES_POR_TIPO = {
   "Usuario":       ["Ver proprio perfil"],
   "Supervisao":    ["Ver proprio perfil", "Ver usuarios comuns"],

@@ -7,22 +7,23 @@ function renderizarTabela() {
   corpo.innerHTML = "";
 
   const nivelLogado = nivelDo(usuarioLogado.tipo);
-
-  const filtro = document.getElementById("filtroTipo").value;
+  const filtro      = document.getElementById("filtroTipo").value;
 
   const visiveis = listaUsuarios.filter(function (u) {
 
-  // FILTRO DE HIERARQUIA
-  const permitido =
-    usuarioLogado.tipo === "Administrador" ||
-    nivelDo(u.tipo) < nivelLogado;
+    // FILTRO DE HIERARQUIA:
+    // Administrador ve todos.
+    // Os demais veem quem esta no mesmo nivel ou abaixo (inclusive a si mesmo).
+    const permitido =
+      usuarioLogado.tipo === "Administrador" ||
+      nivelDo(u.tipo) <= nivelLogado;
 
-  // FILTRO DO SELECT
-  const filtroTipo =
-    filtro === "Todos" ||
-    u.tipo === filtro;
+    // FILTRO DO SELECT
+    const filtroTipo =
+      filtro === "Todos" ||
+      u.tipo === filtro;
 
-  return permitido && filtroTipo;
+    return permitido && filtroTipo;
   });
 
   for (let i = 0; i < visiveis.length; i++) {
